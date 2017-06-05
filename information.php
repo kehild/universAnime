@@ -10,11 +10,15 @@ include_once "texte.php";
 		$anime->dumpMySQL($db, 3);	
 	}
 ?>
-<div class="container">
-		<p style="text-align:left"><?php echo $info; ?>
-		</p>
-		<form method="post" action="">
-			</br>
-			<input type="submit" name="export" value="Exporter la base de données">
-		</form>
-</div>
+<section>
+	<div class="transbox">
+                <div class="container">
+                        <p style="text-align:left"><?php echo $info; ?>
+                        </p>
+                        <form method="post" action="">
+                            </br>
+                            <input type="submit" name="export" value="Exporter la base de données">
+                        </form>
+                </div>
+        </div>
+</section>

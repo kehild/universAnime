@@ -2,6 +2,7 @@
 	<title>Univers Anime</title>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lobster" />
 	<link rel="icon" type="image/png" href="image/anime.jpg"/>
 	<table id="test">	
 		<tr>
@@ -11,7 +12,7 @@
 	</table>	
 </header>
 <nav>
-	<ul id="menu-deroulant">
+	<ul class="fancyNav" id="tests">
 		<li style="float: left"><a href="index.php">Home</a></li>
 		<li style="float: left"><a href="saisie.php">Saisir</a></li>
 		<li style="float: left"><a href="#">Liste Anime</a>
@@ -28,15 +29,24 @@
 				<li><a href="temps.php">Temps</a></li>
 			</ul>
 		</li>
-			<li style="float: left"><a href="#">Statistique OAV</a>
+		<li style="float: left"><a href="#">Statistique OAV</a>
 			<ul>
 				<li><a href="stat_oav.php">Nombre Vu OAV</a></li>
 				<li><a href="temps_oav.php">Temps OAV</a></li>
 			</ul>
 		</li>
-		<form style="width:300px; float: left; margin-top: 10px;" action="search.php" method="post">
-			<input "type="text" id="search" name="search"/>
-		</form>
+		
+                <li style="float: left"><a href="#">Recherche par Titre</a>
+			<ul>
+                            <form id="FormRecherche" action="search.php" method="post">
+                                    <input type="text" id="search" name="search"/>
+                            </form>
+			</ul>
+		</li>
+                
+                
+
+                
 		<li style="float:right"><a href="information.php">Information</a></li>
 	</ul>
 </nav>
