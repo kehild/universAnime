@@ -117,6 +117,7 @@ div.transbox p {
 }
 
 /* Menu saisie */
+
 input[type=text], select, textarea {
 
 	width: 90%;
@@ -126,7 +127,6 @@ input[type=text], select, textarea {
 	border: 1px solid #ccc;
 	border-radius: 4px;
 	box-sizing: border-box;
-       
         background-color: #f0f0f0;
         color: #5d5d5d;
         font: 14px/1 Lobster,Arial,sans-serif;
@@ -143,7 +143,7 @@ input[type=submit] {
 	border-radius: 4px;
 	cursor: pointer;
         
-        font: 20px/1 Lobster,Arial,sans-serif;
+        font: 16px/1 Lobster,Arial,sans-serif;
         color: #5d5d5d;
        
         background-image: -webkit-gradient(linear,left top, left bottom,from(#fefefe), color-stop(0.5,#f0f0f0), color-stop(0.51, #e6e6e6));
@@ -164,9 +164,7 @@ div {
 	background-color: transparent;
 	padding: 20px;
 	color: white;
-        //color: #5d5d5d;
 	text-align: center;
-	//font-size:12px;
         font: 13px Lobster,Arial,sans-serif;
 	
 }
@@ -176,9 +174,7 @@ div {
 #Modifier, #Annuler{
 
 	border-radius: 2px;
-	//background-color: #333;
 	padding: 20px;
-	//color: white;
         color: #5d5d5d;
 	width: 40%;
 	border-radius : 5px 5px 5px 5px;
@@ -189,7 +185,6 @@ table#dernier{
 
 	border-collapse: collapse;
 	width: 100%;
-	//font-size:12px;
         font: 13px Lobster,Arial,sans-serif;
 }
 
@@ -197,7 +192,6 @@ th{
 
 	text-align: left;
 	padding: 8px;
-	//font-size:12px;
         font: 13px Lobster,Arial,sans-serif;
 }
 
@@ -219,13 +213,15 @@ tr:nth-child(even){background-color: #f2f2f2}
 .pagination a {
 	color: black;
 	float: center;
-	
 	padding: 8px 16px;
 	text-decoration: none;
 	transition: background-color .3s;
+        font: 13px Lobster,Arial,sans-serif;
 }
 
-.pagination a:hover:not(.active) {background-color: #ddd;}
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+}
 
 
 /* Responsive design */
@@ -272,12 +268,10 @@ font-size: 13px;
 }
 
 table#dernier{
-//font-size:12px;
 font: 13px Lobster,Arial,sans-serif;
 }
 
 th{
-//font-size:12px;
 font: 13px Lobster,Arial,sans-serif;
 }
 
@@ -290,7 +284,7 @@ font: 13px Lobster,Arial,sans-serif;
 	height: 10px;
 	text-align : center;
 	border: 1px solid white;
-        font: 20px/1 Lobster,Arial,sans-serif;
+        font: 16px/1 Lobster,Arial,sans-serif;
         color: #5d5d5d;
         
         background-image: -webkit-gradient(linear,left top, left bottom,from(#fefefe), color-stop(0.5,#f0f0f0), color-stop(0.51, #e6e6e6));
@@ -303,11 +297,6 @@ font: 13px Lobster,Arial,sans-serif;
 	-moz-box-shadow: 1px -1px 0 rgba(255, 255, 255, 0.6) inset;
 	-webkit-box-shadow: 1px -1px 0 rgba(255, 255, 255, 0.6) inset;
         
-//	position:relative;
-//	float: left;
-//	list-style: none;
-//	display: inline-block;
-
 }
 
 /* Menu */
@@ -316,6 +305,8 @@ font: 13px Lobster,Arial,sans-serif;
 	/* Affects the UL element */
 	overflow: visible;
 	display: inline-block;
+       // width: 100%;
+        
 }
 
 .fancyNav li{
@@ -336,8 +327,7 @@ font: 13px Lobster,Arial,sans-serif;
 	-moz-box-shadow: 1px -1px 0 rgba(255, 255, 255, 0.6) inset;
 	-webkit-box-shadow: 1px -1px 0 rgba(255, 255, 255, 0.6) inset;
 	position:relative;
-	
-	float: left;
+	//float: left;
 	list-style: none;
 	display: inline-block;
 }
@@ -390,7 +380,6 @@ font: 13px Lobster,Arial,sans-serif;
 	box-shadow:1px 0 0 #a3a3a3,2px 0 0 #fff;
 	-moz-box-shadow:1px 0 0 #a3a3a3,2px 0 0 #fff;
 	-webkit-box-shadow:1px 0 0 #a3a3a3,2px 0 0 #fff;
-	
 	border-radius:4px 0 0 4px;
 }
 
@@ -432,7 +421,7 @@ font: 13px Lobster,Arial,sans-serif;
 .fancyNav li a{
 	color: #5d5d5d;
 	display: inline-block;
-	font: 20px/1 Lobster,Arial,sans-serif;
+	font: 16px/1 Lobster,Arial,sans-serif;
 	padding: 12px 35px 14px;
 	position: relative;
 	text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);
@@ -442,7 +431,7 @@ font: 13px Lobster,Arial,sans-serif;
 }
 
 .fancyNav .homeIcon{
-	background:url('../img/home.png') no-repeat center center;
+	//background:url('../img/home.png') no-repeat center center;
 	display: block;
 	overflow: hidden;
 	padding-left: 12px;
@@ -452,6 +441,7 @@ font: 13px Lobster,Arial,sans-serif;
 }
 
 /* Paramete sous menu */ 
+
 #tests, #tests ul {
     padding: 0;
     margin: 0;
@@ -484,6 +474,8 @@ font: 13px Lobster,Arial,sans-serif;
 /* Au survol des li du menu on replace les sous menus */
     left: auto;
 }
+
+/* Moteur de recherche */
 
 #FormRecherche{
 	

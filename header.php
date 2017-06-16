@@ -2,7 +2,7 @@
 	<title>Univers Anime</title>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lobster" />
+        <!--<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lobster" /> -->
 	<link rel="icon" type="image/png" href="image/anime.jpg"/>
 	<table id="test">	
 		<tr>
