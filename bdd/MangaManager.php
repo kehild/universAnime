@@ -551,7 +551,72 @@ function UpdateAnime($db){
 		  
 	  }
   }
+  
+  /* Système de Recherche Avancer */
 
+  public function SearchAvance($db){
+      
+      if(isset($_POST['theme'])) {
+
+		$chainesearch = addslashes($_POST['theme']);  
+		$oav = addslashes($_POST['oav']);
+                $film = addslashes($_POST['film']);
+                
+		$requete = "SELECT * from anime WHERE theme='$chainesearch' AND oav='$oav' AND film='$film'";
+                
+		// Exécution de la requête SQL
+		$resultat = $db->query($requete) or die(print_r($db->errorInfo()));
+		//echo 'Les résultats de recherche sont : <br />';     
+		$nb = 0;
+		echo "<table id='dernier' align='center'>";
+					
+			echo "<tr><th>"; echo "Nom"; echo "</th>";
+			echo "<th>"; echo "Nom"; echo "</th>";
+			echo "<th>"; echo "Episode"; echo "</th>";
+			echo "<th>"; echo "date"; echo "</th>";
+			echo "<th>"; echo "Thème"; echo "</th>";
+			echo "<th>"; echo "Nb Saison"; echo "</th>";
+			echo "<th>"; echo "duree"; echo "</th>";
+			echo "<th>"; echo "Format"; echo "</th>";
+			echo "<th>"; echo "Modifier"; echo "</th>";
+			echo "<th>"; echo "Supprimer"; echo "</th></tr>";
+								
+			while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {       
+			$nb = $nb +1;
+								
+			echo "<tr><th>"; echo "<img src='image/liste/".$donnees['image']."'>"; echo "</th>";
+			echo "<th>"; echo $donnees['nom']; echo "</th>";
+			echo "<th>"; echo $donnees['episode']; echo "</th>";
+			echo "<th>"; echo $donnees['date']; echo "</th>";
+			echo "<th>"; echo $donnees['theme']; echo "</th>";
+			echo "<th>"; echo $donnees['saison'];  echo "</th>";
+			echo "<th>"; echo $donnees['duree']; echo "</th>";
+			echo "<th>"; echo $donnees['format']; echo "</th>";
+			echo "<th>"; echo '<a href="ModifAnime.php?id='.$donnees['id'].'"><img src="image/modifier.png"></a>'; echo "</th>";
+		echo "<th>"; echo '<a href="?id1='.$donnees['id'].'"><img src="image/delete.png"></a>'; echo "</th></tr>";  
+		}
+		echo "</table>";
+		echo "</br>";
+		echo "Il y a ".$nb." résultats"; 
+						
+                }
+  }
+  
+  public function SearchTheme($db){
+      
+                    $stmt = $db->prepare("SELECT theme FROM anime GROUP BY theme ORDER BY theme ASC"); 
+                    $stmt->execute();
+                    $match = array();
+
+                    foreach(($stmt->fetchAll()) as $toto){
+                        echo "<input type='checkbox' name='theme' value='".$toto["theme"]."'>".$toto["theme"].""; echo "</br>";
+                     //   echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+
+                    }
+  }
+  
+  
+  
   
   public function setDb(PDO $db){
     $this->_db = $db;

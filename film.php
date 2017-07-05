@@ -5,19 +5,21 @@ include_once "bdd/MangaManager.php";
 ?>
 <section>
 	<div class="transbox">
-		<p><?php  
-		
-		$anime = new MangaManager($db);
-		$anime->ListeAnimeFilm($db);
-		
-		if (isset($_GET['id1'])){
-			$anime->DeleteAnime($db, $_GET['id1']);
-			echo '<meta http-equiv="refresh" content="0;URL=film.php">';
-		}		
+		<div style="overflow-x:auto;">
+                    <p><?php  
 
-		?>
-		<a id="le_bouton" href="#test"><img src="image/fleche.png"></a>
-		</p>
+                    $anime = new MangaManager($db);
+                    $anime->ListeAnimeFilm($db);
+
+                    if (isset($_GET['id1'])){
+                            $anime->DeleteAnime($db, $_GET['id1']);
+                            echo '<meta http-equiv="refresh" content="0;URL=film.php">';
+                    }		
+
+                    ?>
+                    <a id="le_bouton" href="#test"><img src="image/fleche.png"></a>
+                    </p>
+                </div>
 	</div>
 </section>
 

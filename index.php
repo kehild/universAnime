@@ -11,22 +11,22 @@
 				<div class="slideshow-container">
 					<div class="mySlides fade">
 					  <div class="numbertext">1 / 4</div>
-					  <img src="image/naruto.jpg" style="width:100%">
-					</div>
-
-					<div class="mySlides fade">
-					  <div class="numbertext">2 / 4</div>
 					  <img src="image/spice and wolf.png" style="width:100%">
 					</div>
 
 					<div class="mySlides fade">
-					  <div class="numbertext">3 / 4</div>
+					  <div class="numbertext">2 / 4</div>
 					  <img src="image/tales.png" style="width:100%">
 					</div>
 
 					<div class="mySlides fade">
-					  <div class="numbertext">4 / 4</div>
+					  <div class="numbertext">3 / 4</div>
 					  <img src="image/high school dxd.jpg" style="width:100%">
+					</div>
+
+					<div class="mySlides fade">
+					  <div class="numbertext">4 / 4</div>
+					  <img src="image/revy.jpg" style="width:100%">
 				</div>
 			</div>
 			<br>
@@ -59,13 +59,19 @@
 				}
 			</script>
 
+                        <div style="overflow-x:auto;">
+                            <p><?php
+                                    echo "</br>";
+                                    $anime = new MangaManager($db);
+                                    $anime->DernierLivreRentree($db);
 
-			<p><?php
-				echo "</br>";
-				$anime = new MangaManager($db);
-				$anime->DernierLivreRentree($db);									
-			?>
-			</p>
+                                if (isset($_GET['id1'])){
+                                    $anime->DeleteAnime($db, $_GET['id1']);
+                                    echo '<meta http-equiv="refresh" content="0;URL=index.php">';
+                                }
+                            ?>
+                            </p>
+                        </div>
 			</div>		
 		</section>		
 	</body>

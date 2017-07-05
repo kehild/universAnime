@@ -1,3 +1,5 @@
+<script type="text/javascript" src="./jquery.min.js"></script>
+<script type="text/javascript" src="./jquery.autocomplete.min.js"></script>
 <?php
 include_once"header.php";
 include_once "bdd/connexion.php";
@@ -14,48 +16,52 @@ include_once "bdd/MangaManager.php";
 
 <div>
   <form method="post" action="">
-    </br>
+        </br>
 	<label for="nom">Nom</label>
-    </br>
+        </br>
 	<input type="text" id="nom" name="nom">
 	</br>
 	<label for="episode">Episode</label>
-    </br>
+        </br>
 	<input type="text" id="episode" name="episode">
 	</br>
 	<label for="date">Date de Sortie</label>
-    </br>
+        </br>
 	<input type="text" id="date" name="date">
 	</br>
-    <label for="theme">Thème</label>
-    </br>
+        <label for="theme">Thème</label>
+        </br>
 	<input type="text" id="theme" name="theme">
 	</br>
 	<label for="saison">Nb Saison</label>
-    </br>
+        </br>
 	<input type="text" id="saison" name="saison">
 	</br>
 	<label for="duree">Durée</label>
-    </br>
+        </br>
 	<input type="text" id="duree" name="duree">
 	</br>
 	<label for="format">Format</label>
-    </br>
-	<input type="text" id="format" name="format">
+        </br>
+	 <select name="format" id="format">
+           <option value="Internet">Internet</option>
+           <option value="PC">PC</option>
+           <option value="CD">CD</option>
+           <option valur="DVD">DVD</option>
+	</select>
 	</br>
 	<label for="oav">OAV ?</label>
 	</br>
 	<select name="oav" id="oav">
            <option value="non">non</option>
-           <option value="oui">oui</option>
-                  
+           <option value="oui">oui</option>        
 	</select>
 	</br>
 	<label for="film">Film ?</label>
-    </br>
+        </br>
 	<select name="film" id="film">
            <option value="non">non</option>
-		   <option value="oui">oui</option>   
+           <option value="oui">oui</option>   
 	</select>
 	</br>
 	<label for="image">Image</label>
@@ -85,8 +91,16 @@ include_once "bdd/MangaManager.php";
 		imagejpeg($destination, 'image/liste/'.$test.'');
 		
 	}
-
-
-
 	include_once"footer.php";
 ?>
+
+<script>
+    
+    $(document).ready(function() {
+        $('#theme').autocomplete({
+            serviceUrl: 'auto_theme.php',
+            dataType: 'json'
+        });
+    });     
+    
+</script>

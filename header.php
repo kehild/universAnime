@@ -1,3 +1,5 @@
+<script type="text/javascript" src="./jquery.min.js"></script>
+<script type="text/javascript" src="./jquery.autocomplete.min.js"></script>
 <header>
 	<title>Univers Anime</title>
 	<meta charset="UTF-8">
@@ -12,43 +14,46 @@
 	</table>	
 </header>
 <nav>
-	<ul class="fancyNav" id="tests">
-		<li style="float: left"><a href="index.php">Home</a></li>
-		<li style="float: left"><a href="saisie.php">Saisir</a></li>
-		<li style="float: left"><a href="#">Liste Anime</a>
+	<ul class="fancyNav">
+		<li><a href="index.php">Home</a>
+		<li><a href="saisie.php">Saisir</a>
+		<li><a href="#">Liste Anime</a>
 			<ul>
-				<li><a href="anime.php">Anime</a></li>
-				<li><a href="film.php">Film</a></li>
-				<li><a href="oav.php">OAV</a></li>
+				<li><a href="anime.php">Anime</a>
+				<li><a href="film.php">Film</a>
+				<li><a href="oav.php">OAV</a>
 			</ul>
-		</li>
-		<li style="float: left"><a href="actualite.php">Actualité</a></li>	
-		<li style="float: left"><a href="#">Statistique</a>
+		<li><a href="actualite.php">Actualité</a>
+		<li><a href="#">Statistique</a>
 			<ul>
-				<li><a href="statistique.php">Nombre Vu</a></li>
-				<li><a href="temps.php">Temps</a></li>
+				<li><a href="statistique.php">Nombre Vu</a>
+				<li><a href="temps.php">Temps</a>
 			</ul>
-		</li>
-		<li style="float: left"><a href="#">Statistique OAV</a>
+		<li><a href="#">Statistique OAV</a>
 			<ul>
-				<li><a href="stat_oav.php">Nombre Vu OAV</a></li>
-				<li><a href="temps_oav.php">Temps OAV</a></li>
-			</ul>
-		</li>
-		
-                <li style="float: left"><a href="#">Recherche par Titre</a>
+				<li><a href="stat_oav.php">Nombre Vu OAV</a>
+				<li><a href="temps_oav.php">Temps OAV</a>
+			</ul>	
+                <li><a href="#">Recherche par Titre</a>
 			<ul>
                             <form id="FormRecherche" action="search.php" method="post">
                                     <input type="text" id="search" name="search"/>
                             </form>
 			</ul>
-		</li>
-                
-                
-
-                
-		<li style="float:right"><a href="information.php">Information</a></li>
-	</ul>
+                <li>
+                    <a href="search_avance.php">Recherche avancé</a>    
+                </li>
 </nav>
+
+<script>
+    
+    $(document).ready(function() {
+        $('#search').autocomplete({
+            serviceUrl: 'auto.php',
+            dataType: 'json'
+        });
+    });     
+    
+</script>
 
 

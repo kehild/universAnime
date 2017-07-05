@@ -5,7 +5,8 @@ include_once "bdd/MangaManager.php";
 ?>
 <section>
 	<div class="transbox">
-		<p><?php 
+		<div style="overflow-x:auto;">
+                <p><?php 
 		
 		$anime = new MangaManager($db);
 		$anime->ListeAnime($db); 
@@ -17,6 +18,7 @@ include_once "bdd/MangaManager.php";
 			?>
 			<a id="le_bouton" href="#test"><img src="image/fleche.png"></a>
 		</p>
+                </div>
 	</div>
 </section>
 
