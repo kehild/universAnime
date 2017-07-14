@@ -505,7 +505,13 @@ public function modification($db){
 			</br>
 			<label for="format">Format</label>
 			</br>
-			<input type="text" id="format" name="format" value="<?php echo $toto['format']; ?>">
+			<select name="format" id="format">
+				<option value="<?php echo $toto['format']; ?>"><?php echo $toto['format']; ?></option>
+				<option value="Internet">Internet</option>
+				<option value="PC">PC</option>
+				<option value="CD">CD</option>
+				<option valur="DVD">DVD</option>
+			</select>
 			</br>
 			<label for="image">Image</label>
 			</br>
@@ -562,7 +568,7 @@ function UpdateAnime($db){
 		$oav = addslashes($_POST['oav']);
                 $film = addslashes($_POST['film']);
                 
-		$requete = "SELECT * from anime WHERE theme='$chainesearch' AND oav='$oav' AND film='$film'";
+		$requete = "SELECT nom,image,episode,date,theme,saison,duree,format,id from anime WHERE theme='$chainesearch' AND oav='$oav' AND film='$film' GROUP BY nom ASC";
                 
 		// Exécution de la requête SQL
 		$resultat = $db->query($requete) or die(print_r($db->errorInfo()));
@@ -570,7 +576,7 @@ function UpdateAnime($db){
 		$nb = 0;
 		echo "<table id='dernier' align='center'>";
 					
-			echo "<tr><th>"; echo "Nom"; echo "</th>";
+			echo "<tr><th>"; echo "Image"; echo "</th>";
 			echo "<th>"; echo "Nom"; echo "</th>";
 			echo "<th>"; echo "Episode"; echo "</th>";
 			echo "<th>"; echo "date"; echo "</th>";
@@ -615,6 +621,25 @@ function UpdateAnime($db){
                     }
   }
   
+  public function test1(){
+		
+		//$test = $_POST['file'];
+		//var_dump($test);
+		
+		$source = imagecreatefromjpeg('image/liste/'.$_POST['file'].''); // La photo est la source
+		$destination = imagecreatetruecolor(111, 168); // On crée la miniature vide
+		// Les fonctions imagesx et imagesy renvoient la largeur et la hauteur d une image
+		$largeur_source = imagesx($source);
+		$hauteur_source = imagesy($source);
+		$largeur_destination = imagesx($destination);
+		$hauteur_destination = imagesy($destination);
+		// On crée la nouvelle image
+		imagecopyresampled($destination, $source, 0, 0, 0, 0, $largeur_destination, $hauteur_destination, $largeur_source, $hauteur_source);
+		// On enregistre l'image avec la nouvelle taille
+		//imagejpeg($destination, $test);
+		imagejpeg($destination, 'image/liste/'.$_POST['file'].'');
+		
+	}
   
   
   

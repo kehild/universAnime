@@ -5,10 +5,10 @@ include_once"header.php";
 include_once "bdd/connexion.php";
 include_once "bdd/MangaManager.php";
 
-
  if (isset($_POST['Valider'])) {
-	test1(); 
+	
 	$anime = new MangaManager($db);
+	$anime->test1(); 
 	$anime->SaisieAnime($db,$_POST['nom'], $_POST['episode'],$_POST['date'],$_POST['theme'],$_POST['saison'],$_POST['duree'],$_POST['format'],$_POST['oav'],$_POST['film'],$_POST['file']);	
 }
 
@@ -74,24 +74,7 @@ include_once "bdd/MangaManager.php";
 
 <?php
 
-	function test1(){
-		
-		$test = $_POST['file'];
-		$source = imagecreatefromjpeg($test); // La photo est la source
-		$destination = imagecreatetruecolor(111, 168); // On crée la miniature vide
-		// Les fonctions imagesx et imagesy renvoient la largeur et la hauteur d une image
-		$largeur_source = imagesx($source);
-		$hauteur_source = imagesy($source);
-		$largeur_destination = imagesx($destination);
-		$hauteur_destination = imagesy($destination);
-		// On crée la nouvelle image
-		imagecopyresampled($destination, $source, 0, 0, 0, 0, $largeur_destination, $hauteur_destination, $largeur_source, $hauteur_source);
-		// On enregistre l'image avec la nouvelle taille
-		//imagejpeg($destination, $test);
-		imagejpeg($destination, 'image/liste/'.$test.'');
-		
-	}
-	include_once"footer.php";
+		include_once"footer.php";
 ?>
 
 <script>

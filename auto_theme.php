@@ -6,7 +6,7 @@ include_once "bdd/connexion.php";
         $q = htmlentities($_GET['query']);
  
         // Requête SQL
-        $requete = "SELECT theme FROM anime WHERE theme LIKE '%". $q ."%'  GROUP BY theme LIMIT 0, 10";
+        $requete = "SELECT theme FROM anime WHERE theme LIKE '%". $q ."%'  GROUP BY theme LIMIT 0, 15";
  
         // Exécution de la requête SQL
         $resultat = $db->query($requete) or die(print_r($db->errorInfo()));
