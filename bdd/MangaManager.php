@@ -288,6 +288,7 @@ public function search($db){
 			echo "<th>"; echo "Nb Saison"; echo "</th>";
 			echo "<th>"; echo "duree"; echo "</th>";
 			echo "<th>"; echo "Format"; echo "</th>";
+                        echo "<th>"; echo "Resumé"; echo "</th>";
 			echo "<th>"; echo "Modifier"; echo "</th>";
 			echo "<th>"; echo "Supprimer"; echo "</th></tr>";
 								
@@ -302,6 +303,7 @@ public function search($db){
 			echo "<th>"; echo $donnees['saison'];  echo "</th>";
 			echo "<th>"; echo $donnees['duree']; echo "</th>";
 			echo "<th>"; echo $donnees['format']; echo "</th>";
+                        echo "<th>"; echo $donnees['resume']; echo "</th>";
 			echo "<th>"; echo '<a href="ModifAnime.php?id='.$donnees['id'].'"><img src="image/modifier.png"></a>'; echo "</th>";
 		echo "<th>"; echo '<a href="?id1='.$donnees['id'].'"><img src="image/delete.png"></a>'; echo "</th></tr>";  
 		}
@@ -450,11 +452,11 @@ function TotalTempsOAV($db){
 		}
 }
 
-function SaisieAnime($db,$nom, $episode,$date,$theme,$saison,$duree,$format,$oav,$film,$file){
+function SaisieAnime($db,$nom, $episode,$date,$theme,$saison,$duree,$format,$oav,$film,$file,$resume){
 	$date_modif = date("Y-m-d H:i:s");	
 	try {
 
-	$sql = "Insert INTO anime (nom, episode, date, theme, saison, duree, format, oav, film, image,date_modif) VALUES ('".$nom."', '".$episode."','".$date."','" .$theme. "','" .$saison. "','" .$duree. "','" .$format. "','" .$oav. "','" .$film. "','" .$file. "','".$date_modif."')";
+	$sql = "Insert INTO anime (nom, episode, date, theme, saison, duree, format, oav, film, image,date_modif,resume) VALUES ('".$nom."', '".$episode."','".$date."','" .$theme. "','" .$saison. "','" .$duree. "','" .$format. "','" .$oav. "','" .$film. "','" .$file. "','".$date_modif."','".$resume."')";
 			
 	$db->exec($sql);
 		
@@ -517,7 +519,11 @@ public function modification($db){
 			</br>
 			<input type="text" id="image" name="image" value="<?php echo $toto['image']; ?>">
 			</br>
-			<input type="submit" id="Modifier" name="Modifier" value="Modifier">
+                        <label for="resume">Résumé</label>
+                        </br>
+                        <textarea id="resume" name="resume" rows="6" cols="60"><?php echo $toto['resume']; ?></textarea>
+                        </br>
+                        <input type="submit" id="Modifier" name="Modifier" value="Modifier">
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<input type="submit" id="Annuler" name="Annuler" value="Annuler">
 			</br>
@@ -528,9 +534,13 @@ public function modification($db){
 
 function UpdateAnime($db){
 	$date_modif = date("Y-m-d H:i:s");
+        $resume = $_POST['resume'];
+	$resume = str_replace("'", " ", $resume);
+	$resume = str_replace("’", " ", $resume);
+        
 		try {
 				
-		$sql = "UPDATE anime SET nom='" .$_POST['nom']. "',episode='" .$_POST['episode']. "',date='" .$_POST['date']. "',theme='" .$_POST['theme']. "', saison='" .$_POST['saison']. "',duree='" .$_POST['duree']. "',format='" .$_POST['format']. "',image='" .$_POST['image']. "', date_modif='".$date_modif."' WHERE id='" .$_GET['id']. "'";
+		$sql = "UPDATE anime SET nom='" .$_POST['nom']. "',episode='" .$_POST['episode']. "',date='" .$_POST['date']. "',theme='" .$_POST['theme']. "', saison='" .$_POST['saison']. "',duree='" .$_POST['duree']. "',format='" .$_POST['format']. "',image='" .$_POST['image']. "', date_modif='".$date_modif."', resume='".$resume."' WHERE id='" .$_GET['id']. "'";
 			
 		$db->exec($sql);
 				
@@ -568,7 +578,7 @@ function UpdateAnime($db){
 		$oav = addslashes($_POST['oav']);
                 $film = addslashes($_POST['film']);
                 
-		$requete = "SELECT nom,image,episode,date,theme,saison,duree,format,id from anime WHERE theme='$chainesearch' AND oav='$oav' AND film='$film' GROUP BY nom ASC";
+		$requete = "SELECT nom,image,episode,date,theme,saison,duree,format,id,resume from anime WHERE theme='$chainesearch' AND oav='$oav' AND film='$film'";
                 
 		// Exécution de la requête SQL
 		$resultat = $db->query($requete) or die(print_r($db->errorInfo()));
@@ -584,6 +594,7 @@ function UpdateAnime($db){
 			echo "<th>"; echo "Nb Saison"; echo "</th>";
 			echo "<th>"; echo "duree"; echo "</th>";
 			echo "<th>"; echo "Format"; echo "</th>";
+                        echo "<th>"; echo "Résumé"; echo "</th>";
 			echo "<th>"; echo "Modifier"; echo "</th>";
 			echo "<th>"; echo "Supprimer"; echo "</th></tr>";
 								
@@ -598,6 +609,7 @@ function UpdateAnime($db){
 			echo "<th>"; echo $donnees['saison'];  echo "</th>";
 			echo "<th>"; echo $donnees['duree']; echo "</th>";
 			echo "<th>"; echo $donnees['format']; echo "</th>";
+                        echo "<th>"; echo $donnees['resume']; echo "</th>";
 			echo "<th>"; echo '<a href="ModifAnime.php?id='.$donnees['id'].'"><img src="image/modifier.png"></a>'; echo "</th>";
 		echo "<th>"; echo '<a href="?id1='.$donnees['id'].'"><img src="image/delete.png"></a>'; echo "</th></tr>";  
 		}
@@ -610,7 +622,33 @@ function UpdateAnime($db){
   
   public function SearchTheme($db){
       
-                    $stmt = $db->prepare("SELECT theme FROM anime GROUP BY theme ORDER BY theme ASC"); 
+                    $stmt = $db->prepare("SELECT theme FROM anime where oav='non' AND film='non' GROUP BY theme ORDER BY theme ASC"); 
+                    $stmt->execute();
+                    $match = array();
+
+                    foreach(($stmt->fetchAll()) as $toto){
+                        echo "<input type='checkbox' name='theme' value='".$toto["theme"]."'>".$toto["theme"].""; echo "</br>";
+                     //   echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+
+                    }
+  }
+  
+    public function SearchThemeOAV($db){
+      
+                    $stmt = $db->prepare("SELECT theme FROM anime where oav='oui' AND film='non' GROUP BY theme ORDER BY theme ASC"); 
+                    $stmt->execute();
+                    $match = array();
+
+                    foreach(($stmt->fetchAll()) as $toto){
+                        echo "<input type='checkbox' name='theme' value='".$toto["theme"]."'>".$toto["theme"].""; echo "</br>";
+                     //   echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+
+                    }
+  }
+  
+      public function SearchThemeFilm($db){
+      
+                    $stmt = $db->prepare("SELECT theme FROM anime where oav='non' AND film='oui' GROUP BY theme ORDER BY theme ASC"); 
                     $stmt->execute();
                     $match = array();
 
@@ -642,6 +680,31 @@ function UpdateAnime($db){
 	}
   
   
+        
+        public function Fiche($db){
+              
+		$stmt = $db->prepare("SELECT * FROM anime where oav='non' ORDER BY nom ASC"); 
+		$stmt->execute();
+
+		echo "<table>";
+
+		echo "<tr><th>"; echo "Nom"; echo "</th>";
+                echo "<th>"; echo "film"; echo "</th>";
+		echo "<th>"; echo "Resume"; echo "</th>";
+		echo "<th>"; echo "Modifier"; echo "</th>";
+		echo "<th>"; echo "Supprimer"; echo "</th></tr>";		
+			
+		foreach(($stmt->fetchAll()) as $donnees){
+												
+		echo "<tr><th>"; echo $donnees['nom']; echo "</th>";
+                echo "<th>"; echo $donnees['film']; echo "</th>";
+		echo "<th>"; echo $donnees['resume']; echo "</th>";
+                echo "<th>"; echo '<a href="ModifAnime.php?id='.$donnees['id'].'"><img src="image/modifier.png"></a>'; echo "</th>";
+		echo "<th>"; echo '<a href="?id1='.$donnees['id'].'"><img src="image/delete.png"></a>'; echo "</th></tr>";  
+		
+		}
+		echo "</table>";
+        }
   
   public function setDb(PDO $db){
     $this->_db = $db;

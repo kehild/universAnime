@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/html/UniversAnime/search.php</file>
-            <file>file:/var/www/html/UniversAnime/auto.php</file>
-            <file>file:/var/www/html/UniversAnime/search_avance.php</file>
-            <file>file:/var/www/html/UniversAnime/style.css</file>
+            <file>file:/var/www/html/UniversAnime/fiche.php</file>
+            <file>file:/var/www/html/UniversAnime/saisie.php</file>
+            <file>file:/var/www/html/UniversAnime/bdd/MangaManager.php</file>
             <file>file:/var/www/html/UniversAnime/header.php</file>
-            <file>file:/var/www/html/UniversAnime/avance.php</file>
+            <file>file:/var/www/html/UniversAnime/bdd/connexion.php</file>
         </group>
     </open-files>
 </project-private>

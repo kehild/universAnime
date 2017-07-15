@@ -9,7 +9,7 @@ include_once "bdd/MangaManager.php";
 	
 	$anime = new MangaManager($db);
 	$anime->test1(); 
-	$anime->SaisieAnime($db,$_POST['nom'], $_POST['episode'],$_POST['date'],$_POST['theme'],$_POST['saison'],$_POST['duree'],$_POST['format'],$_POST['oav'],$_POST['film'],$_POST['file']);	
+	$anime->SaisieAnime($db,$_POST['nom'], $_POST['episode'],$_POST['date'],$_POST['theme'],$_POST['saison'],$_POST['duree'],$_POST['format'],$_POST['oav'],$_POST['film'],$_POST['file'],$_POST['resume']);	
 }
 
 ?>
@@ -68,6 +68,10 @@ include_once "bdd/MangaManager.php";
 	</br>
 	<input type="file" id="file" name="file">
 	</br>
+        <label for="resume">Résumé</label>
+        </br>
+        <textarea name="resume" rows="6" cols="60"></textarea>
+        </br>
     <input type="submit" name="Valider" value="Valider">
   </form>
 </div>

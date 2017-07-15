@@ -23,6 +23,7 @@
 				<li><a href="film.php">Film</a>
 				<li><a href="oav.php">OAV</a>
 			</ul>
+                <li><a href="fiche.php">Fiche Anime</a>    
 		<li><a href="actualite.php">Actualité</a>
 		<li><a href="#">Statistique</a>
 			<ul>
