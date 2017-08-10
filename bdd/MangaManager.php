@@ -454,9 +454,14 @@ function TotalTempsOAV($db){
 
 function SaisieAnime($db,$nom, $episode,$date,$theme,$saison,$duree,$format,$oav,$film,$file,$resume){
 	$date_modif = date("Y-m-d H:i:s");	
+	
 	try {
+		
+	$resume1 = $_POST['resume'];
+	$resume1 = str_replace("'", " ", $resume1);
+	$resume1 = str_replace("’", " ", $resume1);	
 
-	$sql = "Insert INTO anime (nom, episode, date, theme, saison, duree, format, oav, film, image,date_modif,resume) VALUES ('".$nom."', '".$episode."','".$date."','" .$theme. "','" .$saison. "','" .$duree. "','" .$format. "','" .$oav. "','" .$film. "','" .$file. "','".$date_modif."','".$resume."')";
+	$sql = "Insert INTO anime (nom, episode, date, theme, saison, duree, format, oav, film, image,date_modif,resume) VALUES ('".$nom."', '".$episode."','".$date."','" .$theme. "','" .$saison. "','" .$duree. "','" .$format. "','" .$oav. "','" .$film. "','" .$file. "','".$date_modif."','".$resume1."')";
 			
 	$db->exec($sql);
 		
