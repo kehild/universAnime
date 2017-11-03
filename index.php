@@ -35,8 +35,7 @@
 			  <span class="dot"></span> 
 			  <span class="dot"></span>
 			  <span class="dot"></span>
-			</div>
-			
+			</div>			
 			<script>
 				var slideIndex = 0;
 				showSlides();
@@ -58,10 +57,8 @@
 					setTimeout(showSlides, 3000); // Change image every 2 seconds
 				}
 			</script>
-
                         <div style="overflow-x:auto;">
                             <p><?php
-                                    echo "</br>";
                                     $anime = new MangaManager($db);
                                     $anime->DernierLivreRentree($db);
 

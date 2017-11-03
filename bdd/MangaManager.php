@@ -9,7 +9,7 @@ class MangaManager{
 
 public function DernierLivreRentree($db){
 
-	$stmt = $db->prepare("SELECT * FROM anime ORDER BY date_modif DESC LIMIT 5"); 
+	$stmt = $db->prepare("SELECT * FROM anime ORDER BY date_modif DESC LIMIT 7"); 
 	$stmt->execute();
 		
 		echo "<table id='dernier' align='center'>";
@@ -24,11 +24,15 @@ public function DernierLivreRentree($db){
 			echo "<th>"; echo "Format"; echo "</th>";
 			echo "<th>"; echo "OAV ?"; echo "</th>";
 			echo "<th>"; echo "Film ?"; echo "</th>";
+			echo "<th>"; echo "Date visionnage"; echo "</th>";
 			echo "<th>"; echo "Modifier"; echo "</th>";
 			echo "<th>"; echo "Supprimer"; echo "</th></tr>";
 
 		foreach(($stmt->fetchAll()) as $toto){
-					
+		
+			$date=date_create($toto['date_modif']);
+			$dateF=date_format($date,"d-m-Y");
+		
 			echo "<tr><th>"; echo "<img src='image/liste/".$toto['image']."'>"; echo "</th>";
 			echo "<th>"; echo $toto['nom']; echo "</th>";
 			echo "<th>"; echo $toto['episode']; echo "</th>";
@@ -39,6 +43,7 @@ public function DernierLivreRentree($db){
 			echo "<th>"; echo $toto['format']; echo "</th>";
 			echo "<th>"; echo $toto['oav']; echo "</th>";
 			echo "<th>"; echo $toto['film']; echo "</th>";
+			echo "<th>"; echo $dateF; echo "</th>";
 		echo "<th>"; echo '<a href="ModifAnime.php?id='.$toto['id'].'"><img src="image/modifier.png"></a>'; echo "</th>";
 		echo "<th>"; echo '<a href="?id1='.$toto['id'].'"><img src="image/delete.png"></a>'; echo "</th></tr>"; 
 		
